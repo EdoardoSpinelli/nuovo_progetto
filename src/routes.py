@@ -2,11 +2,26 @@ from flask import Blueprint, request, jsonify
 from src.handlers.handler_product import (
     get_all_products,
     create_product,
+    get_products_count,
     update_product,
     delete_product
 )
 
-product_bp = Blueprint('products', __name__, url_prefix='/products')
+product_bp = Blueprint('products', __name__, url_prefix='/api/products')
+
+
+
+# ── COUNT /api/products/count ───────────────────────────────────────────────────
+
+@product_bp.route('/count', methods=['GET'])
+def route_get_products_count():
+    try:
+        total = get_products_count()
+        return jsonify({"total_products": total}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 
 
 # ── GET /products ─────────────────────────────────────────────────────────────

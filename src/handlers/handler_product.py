@@ -1,3 +1,4 @@
+from flask import jsonify
 import pandas as pd
 import os
 
@@ -93,3 +94,12 @@ def delete_product(name: str):
 
     print(f"Prodotto con nome {name} eliminato.")
     return True
+
+
+def get_products_count():
+    """Restituisce il numero totale di prodotti presenti nel magazzino."""
+    try:
+        df = _read_df()
+        return len(df)
+    except Exception:
+        return 0

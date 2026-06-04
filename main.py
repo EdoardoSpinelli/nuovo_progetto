@@ -3,7 +3,7 @@ from src.app import create_app
 import os
 
 load_dotenv()
-PORT = os.getenv("PORT", "8082")
+PORT = os.getenv("PORT", "8085")
 app = create_app()
 
 if __name__ == "__main__":
